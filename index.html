@@ -30,7 +30,11 @@ nav{position:fixed;inset:0 0 auto;z-index:10;background:rgba(243,241,236,.9);bac
 nav.s{border-color:var(--line)}
 nav .w{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 1.7rem/1 'Instrument Serif',serif;letter-spacing:-.01em}
-.brand svg{width:30px;height:30px; display: block}
+.brand img {
+    width: 30px;
+    height: 30px;
+    display: block;
+}
 .links{display:flex;gap:32px;font-size:.95rem;list-style:none;padding:0}
 .links a{text-decoration:none;color:var(--mute);transition:color .2s}.links a:hover{color:var(--ink)}
 .right{display:flex;align-items:center;gap:16px}
@@ -187,7 +191,8 @@ footer .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <a class="brand" href="#top" aria-label="Unora">
     <img src="./logo.svg" alt="Unora logo">
     unora
-</a><ul class="links"><li><a href="#how" data-i="n1"></a></li><li><a href="#categories" data-i="n2"></a></li><li><a href="#privacy" data-i="n3"></a></li></ul>
+</a>
+<ul class="links"><li><a href="#how" data-i="n1"></a></li><li><a href="#categories" data-i="n2"></a></li><li><a href="#privacy" data-i="n3"></a></li></ul>
 <div class="right">
 <div class="lang" role="group" aria-label="Language"><button data-l="en">EN</button><button data-l="fr">FR</button><button data-l="ar" lang="ar">العربية</button></div>
 <a class="btn" href="#notify" data-i="btn"></a>
@@ -251,8 +256,8 @@ footer .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <footer><div class="w"><span><span id="yr"></span> Unora</span><span data-i="ft"></span></div></footer>
 
 <script>
-const CONTACT_EMAIL='laribiissam8@gmail.com'; 
-const FORM_ENDPOINT='';              
+const CONTACT_EMAIL='hello@unora.app'; // replace with your address
+const FORM_ENDPOINT='';                // optional: Formspree or similar URL
 const T={
 en:{ttl:'Unora – Know the people next door',n1:'How it works',n2:'Categories',n3:'Privacy',btn:'Notify me',pill:'Coming soon for Android and iOS',h1:'Know the people next door.',lead:'Unora is a private space for your building, neighborhood or dormitory. Ask for help, lend and borrow, share news and recommend places, with people who actually live nearby.',soon:'Coming soon on',room:'Maple Court',mem:'42 members',reply:'2 replies',
 p1:'Could someone help me carry a washing machine to the third floor?',p2:'Does anyone have a drill I can borrow until Sunday?',p3:'Water will be off tomorrow from 9 am to 1 pm.',p4:'Karim fixed my plumbing in an hour. Recommended.',
