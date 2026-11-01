@@ -30,7 +30,7 @@ nav{position:fixed;inset:0 0 auto;z-index:10;background:rgba(243,241,236,.9);bac
 nav.s{border-color:var(--line)}
 nav .w{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 1.7rem/1 'Instrument Serif',serif;letter-spacing:-.01em}
-.brand svg{width:30px;height:30px}
+.brand svg{width:30px;height:30px; display: block}
 .links{display:flex;gap:32px;font-size:.95rem;list-style:none;padding:0}
 .links a{text-decoration:none;color:var(--mute);transition:color .2s}.links a:hover{color:var(--ink)}
 .right{display:flex;align-items:center;gap:16px}
@@ -184,8 +184,10 @@ footer .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
 </defs></svg>
 <nav id="nav"><div class="w">
-<a class="brand" href="#top" aria-label="Unora"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#14151A"/><path d="M18 14v18a14 14 0 0 0 28 0V14" fill="none" stroke="#F3F1EC" stroke-width="8" stroke-linecap="round"/><circle cx="32" cy="25" r="5.5" fill="#8C88FF"/></svg>unora</a>
-<ul class="links"><li><a href="#how" data-i="n1"></a></li><li><a href="#categories" data-i="n2"></a></li><li><a href="#privacy" data-i="n3"></a></li></ul>
+<a class="brand" href="#top" aria-label="Unora">
+    <img src="./logo.svg" alt="Unora logo">
+    unora
+</a><ul class="links"><li><a href="#how" data-i="n1"></a></li><li><a href="#categories" data-i="n2"></a></li><li><a href="#privacy" data-i="n3"></a></li></ul>
 <div class="right">
 <div class="lang" role="group" aria-label="Language"><button data-l="en">EN</button><button data-l="fr">FR</button><button data-l="ar" lang="ar">العربية</button></div>
 <a class="btn" href="#notify" data-i="btn"></a>
