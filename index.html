@@ -1,273 +1,347 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Unora – Your neighbors, one tap away</title>
-<meta name="description" content="Unora connects people in the same neighborhood, building or dorm. Ask for help, borrow, share news and recommend places. Coming soon for Android and iOS.">
-<meta name="theme-color" content="#14123A">
+<title>Unora – Know the people next door</title>
+<meta name="description" content="Unora is a private space for your building, neighborhood or dormitory. Coming soon for Android and iOS.">
+<meta name="theme-color" content="#F3F1EC">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Naskh+Arabic:wght@500;600&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
-:root{--ink:#14123A;--ink2:#1E1B52;--violet:#6B4DFF;--mint:#7CF2C0;--sun:#FFC857;--rose:#FF8FA3;--sky:#7CC8FF;--paper:#F6F5FF;--text:#E9E7FF;--mute:#A9A5D6;--r:22px}
+:root{--paper:#F3F1EC;--ink:#14151A;--mute:#62646C;--line:#D8D5CC;--accent:#3A33D6;--night:#101126;--serif:'Instrument Serif',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif}
+:lang(ar){--serif:'Noto Naskh Arabic','Instrument Serif',serif;--sans:'IBM Plex Sans Arabic','Hanken Grotesk',sans-serif}
 *{box-sizing:border-box;margin:0}html{scroll-behavior:smooth}
-body{font:400 17px/1.6 'DM Sans',system-ui,sans-serif;background:var(--ink);color:var(--text);overflow-x:hidden}
-h1,h2,h3,.brand{font-family:'Bricolage Grotesque','DM Sans',sans-serif;line-height:1.05;letter-spacing:-.02em}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:8px}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-nav{position:fixed;inset:0 0 auto;z-index:20;backdrop-filter:blur(14px);background:rgba(20,18,58,.65)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.5rem;text-decoration:none}
-.brand svg{width:34px;height:34px}
-nav ul{display:flex;gap:28px;list-style:none;font-size:.95rem}
-nav ul a{text-decoration:none;color:var(--mute)}nav ul a:hover{color:#fff}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:99px;border:0;font:700 1rem 'DM Sans';cursor:pointer;text-decoration:none;background:var(--mint);color:var(--ink);transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(124,242,192,.35)}
-.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3)}
+body{font:400 17px/1.65 var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+a{color:inherit}button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.w{max-width:1160px;margin:0 auto;padding:0 28px}
+h1,h2,h3,.serif{font-family:var(--serif);font-weight:400}
+:lang(ar) h1,:lang(ar) h2,:lang(ar) h3,:lang(ar) .serif{font-weight:600}
+h1{font-size:clamp(3.2rem,7.5vw,6.4rem);line-height:.98;letter-spacing:-.02em}
+h2{font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.08;letter-spacing:-.015em;max-width:15em}
+:lang(ar) h1{line-height:1.3;letter-spacing:0}:lang(ar) h2{line-height:1.35;letter-spacing:0}
+.eyebrow{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:500}
+:lang(ar) .eyebrow{letter-spacing:0;text-transform:none;font-size:.9rem}
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:10;background:rgba(243,241,236,.9);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+nav.s{border-color:var(--line)}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:400 1.7rem/1 'Instrument Serif',serif;letter-spacing:-.01em}
+.brand svg{width:30px;height:30px}
+.links{display:flex;gap:32px;font-size:.95rem;list-style:none;padding:0}
+.links a{text-decoration:none;color:var(--mute);transition:color .2s}.links a:hover{color:var(--ink)}
+.right{display:flex;align-items:center;gap:16px}
+.lang{display:flex;border:1px solid var(--line);border-radius:99px;padding:3px}
+.lang button{border:0;background:none;padding:5px 12px;border-radius:99px;font-size:.82rem;font-weight:500;color:var(--mute);font-family:'Hanken Grotesk','IBM Plex Sans Arabic',sans-serif}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.btn{display:inline-block;padding:11px 22px;border-radius:99px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);text-decoration:none;font-weight:500;font-size:.95rem;transition:background .2s,color .2s}
+.btn:hover{background:var(--accent);border-color:var(--accent)}
 /* hero */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:110px 0 60px}
-#net{position:absolute;inset:0;width:100%;height:100%}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.pill{display:inline-flex;gap:10px;align-items:center;padding:7px 16px;border-radius:99px;background:rgba(124,242,192,.12);color:var(--mint);font-size:.9rem;font-weight:500;margin-bottom:24px}
-.pill i{width:8px;height:8px;border-radius:50%;background:var(--mint);animation:pulse 1.6s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(124,242,192,.7)}100%{box-shadow:0 0 0 12px transparent}}
-h1{font-size:clamp(2.8rem,7vw,5.6rem);font-weight:800}
-h1 span{display:inline-block;opacity:0;transform:translateY(40px) rotate(4deg);animation:rise .8s cubic-bezier(.2,.9,.3,1.2) forwards}
-@keyframes rise{to{opacity:1;transform:none}}
-.hero p.lead{font-size:1.2rem;color:var(--mute);max-width:30em;margin:24px 0 32px}
-.stores{display:flex;flex-wrap:wrap;gap:12px}
-.store{display:flex;align-items:center;gap:12px;padding:10px 20px;border-radius:14px;background:#fff;color:var(--ink);text-decoration:none;cursor:default;position:relative}
-.store svg{width:26px;height:26px}.store small{display:block;font-size:.72rem;opacity:.65;line-height:1.1}.store b{font-size:1.05rem;line-height:1.2}
-.store em{position:absolute;top:-10px;right:-6px;background:var(--sun);color:var(--ink);font:700 .7rem 'DM Sans';padding:3px 9px;border-radius:99px;font-style:normal;transform:rotate(6deg)}
-/* phone */
-.phone{width:min(320px,100%);margin:auto;border-radius:44px;background:#0B0A26;padding:12px;border:2px solid rgba(255,255,255,.12);box-shadow:0 50px 100px rgba(0,0,0,.5),0 0 120px rgba(107,77,255,.45);animation:float 6s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-14px) rotate(-1.2deg)}}
-.screen{border-radius:34px;background:var(--paper);color:var(--ink);height:560px;padding:20px 16px;overflow:hidden;position:relative}
-.screen h4{font:800 1.2rem 'Bricolage Grotesque';display:flex;justify-content:space-between;align-items:center}
-.screen h4 small{font:500 .75rem 'DM Sans';background:var(--ink);color:var(--mint);padding:4px 10px;border-radius:99px}
-.chips{display:flex;gap:6px;margin:14px 0;overflow:hidden}
-.chip{font-size:.72rem;padding:5px 11px;border-radius:99px;background:#fff;white-space:nowrap;font-weight:700;transition:.3s}
-.chip.on{background:var(--ink);color:#fff}
-.post{background:#fff;border-radius:18px;padding:14px;margin-bottom:12px;font-size:.85rem;line-height:1.4;box-shadow:0 6px 18px rgba(20,18,58,.08);animation:pop .5s both}
-@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.96)}}
-.post .who{display:flex;gap:8px;align-items:center;font-weight:700;margin-bottom:6px}
-.av{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;color:var(--ink);font-weight:800}
-.tag{display:inline-block;margin-top:8px;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:99px}
+.hero{padding:140px 0 90px}
+.hero .w{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:10px;margin-bottom:28px}
+.status i{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.lead{font-size:1.18rem;color:var(--mute);max-width:32em;margin:28px 0 36px}
+.stores{display:flex;gap:12px;flex-wrap:wrap}
+.store{border:1px solid var(--ink);border-radius:12px;padding:10px 20px;min-width:164px}
+.store small{display:block;font-size:.72rem;color:var(--mute);line-height:1.3}.store b{font-weight:500;font-size:1.05rem}
+.panel{background:var(--accent);border-radius:28px;height:620px;overflow:hidden;display:flex;justify-content:center;align-items:flex-end;position:relative}
+.panel:before{content:"";position:absolute;width:520px;height:520px;border-radius:50%;border:1px solid rgba(255,255,255,.22);top:60px}
+.panel:after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;border:1px solid rgba(255,255,255,.22);top:150px}
+.phone{position:relative;z-index:1;width:290px;background:var(--ink);border-radius:42px 42px 0 0;padding:10px 10px 0;margin-bottom:-90px}
+.screen{background:var(--paper);border-radius:34px 34px 0 0;height:520px;padding:22px 18px;color:var(--ink);font-size:.86rem;line-height:1.45}
+.screen header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:12px}
+.screen header b{font:400 1.35rem var(--serif)}.screen header span{font-size:.75rem;color:var(--mute)}
+.post{padding:16px 0;border-bottom:1px solid var(--line);transition:opacity .45s}
+.post.f{opacity:0}
+.post .t{display:inline-block;font-size:.7rem;border:1px solid var(--ink);border-radius:99px;padding:2px 10px;margin-bottom:10px;font-weight:500}
+.post .m{font-size:.75rem;color:var(--mute);margin-top:8px}
+.ghost{color:var(--mute);opacity:.55}
 /* sections */
-section{padding:110px 0;position:relative}
-section.light{background:var(--paper);color:var(--ink)}
-h2{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;max-width:14em;margin-bottom:18px}
-.sub{color:var(--mute);max-width:36em;font-size:1.1rem}.light .sub{color:#57527f}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px;counter-reset:s}
-.step{padding:0 28px 0 0;position:relative}
-.step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--violet);color:#fff;font:800 1.3rem 'Bricolage Grotesque';position:relative;z-index:1}
-.step:after{content:"";position:absolute;left:52px;right:0;top:25px;border-top:2px dashed #b9b0ff}
-.step:last-child:after{display:none}
-.step h3{font-size:1.5rem;margin:20px 0 8px}.step p{color:#57527f}
+section{padding:120px 0}
+.rule{border-top:1px solid var(--line)}
+.head{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;margin-bottom:64px;align-items:end}
+.head p{color:var(--mute);font-size:1.1rem;max-width:30em}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.step{border-top:1px solid var(--ink);padding-top:20px}
+.step .n{font:400 1.2rem var(--serif);color:var(--accent)}
+.step h3{font-size:1.9rem;margin:34px 0 10px;line-height:1.15}.step p{color:var(--mute)}
 /* categories */
-.cats{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;margin-top:48px;align-items:start}
-.tabs{display:flex;flex-direction:column;gap:10px}
-.tab{display:flex;align-items:center;gap:14px;text-align:left;padding:16px 20px;border-radius:18px;border:1.5px solid rgba(255,255,255,.12);background:transparent;color:var(--text);font:700 1.05rem 'DM Sans';cursor:pointer;transition:.25s}
-.tab:hover{border-color:rgba(255,255,255,.4)}
-.tab[aria-selected=true]{background:var(--c);color:var(--ink);border-color:var(--c);transform:translateX(10px)}
-.tab .ic{font-size:1.4rem}
-.tab.dorm{display:none}.dorms .tab.dorm{display:flex;animation:pop .5s both}
-.switch{display:flex;align-items:center;gap:12px;margin-top:10px;color:var(--mute);font-size:.95rem;cursor:pointer;background:none;border:0;font-family:inherit;padding:8px 0}
-.switch i{width:46px;height:26px;border-radius:99px;background:#3a3680;position:relative;transition:.3s}
-.switch i:after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.3s}
-.switch[aria-pressed=true] i{background:var(--mint)}.switch[aria-pressed=true] i:after{left:23px}
-.detail{background:var(--c);color:var(--ink);border-radius:32px;padding:40px;min-height:380px;transition:background .4s;display:flex;flex-direction:column;justify-content:space-between}
-.detail .big{font-size:5rem;line-height:1;animation:pop .5s both}
-.detail h3{font-size:2.2rem;margin:16px 0 10px}
-.detail p{font-size:1.1rem;max-width:26em}
-.detail .ex{margin-top:24px;background:rgba(255,255,255,.55);border-radius:16px;padding:14px 18px;font-weight:500}
+.acc{list-style:none;padding:0;border-top:1px solid var(--ink)}
+.acc li{border-bottom:1px solid var(--line)}
+.acc .row{display:grid;grid-template-columns:70px 1fr 24px;align-items:center;width:100%;text-align:start;background:none;border:0;padding:26px 0}
+.acc .num{font:400 1rem var(--serif);color:var(--mute)}
+.acc .ti{font:400 clamp(1.7rem,3.4vw,2.6rem)/1.15 var(--serif);transition:color .2s,transform .3s}
+:lang(ar) .acc .ti{font-weight:600}
+.acc .row:hover .ti,.acc [aria-expanded=true] .ti{color:var(--accent)}
+.acc .row:hover .ti{transform:translateX(6px)}[dir=rtl] .acc .row:hover .ti{transform:translateX(-6px)}
+.acc .pl{width:14px;height:14px;position:relative}
+.acc .pl:before,.acc .pl:after{content:"";position:absolute;background:var(--ink);transition:transform .3s}
+.acc .pl:before{left:0;right:0;top:6.5px;height:1px}.acc .pl:after{top:0;bottom:0;left:6.5px;width:1px}
+.acc [aria-expanded=true] .pl:after{transform:scaleY(0)}
+.acc .bd{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s}
+.acc .open .bd{grid-template-rows:1fr}
+.acc .bd>div{overflow:hidden;padding-inline-start:70px}
+.acc .bd p{color:var(--mute);max-width:34em}
+.acc .bd q{display:block;margin:14px 0 30px;font:italic 1.25rem/1.4 var(--serif);color:var(--ink);quotes:none;border-inline-start:2px solid var(--accent);padding-inline-start:16px;max-width:30em}
+:lang(ar) .acc .bd q{font-style:normal;font-family:var(--sans)}
+.sub{margin:48px 0 14px}
 /* badges */
-.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
-.badge{background:#fff;border-radius:var(--r);padding:28px 20px;text-align:center;box-shadow:0 14px 40px rgba(20,18,58,.08);transition:transform .3s}
-.badge:hover{transform:translateY(-8px) rotate(-2deg)}
-.hex{width:84px;height:92px;margin:0 auto 14px;display:grid;place-items:center;font-size:2.2rem;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:var(--c)}
-.badge b{font:800 1.15rem 'Bricolage Grotesque';display:block}.badge span{font-size:.9rem;color:#57527f}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink)}
+.bg{padding:28px 24px 28px 0;border-inline-end:1px solid var(--line);padding-inline:0 24px;margin-inline-end:24px}
+.bg:last-child{border:0}
+.sh{display:block;width:52px;height:52px;background:var(--accent);margin-bottom:26px;transition:transform .5s}
+.bg:hover .sh{transform:rotate(90deg)}
+.s1{border-radius:50%}.s2{border-radius:12px}.s3{clip-path:polygon(50% 4%,96% 92%,4% 92%)}.s4{border-radius:50% 50% 0 0;height:30px;margin-top:22px}
+.bg h3{font-size:1.6rem;line-height:1.2}.bg p{color:var(--mute);font-size:.95rem;margin-top:6px}
+/* privacy */
+.night{background:var(--night);color:#ECEAF5;border-radius:36px;margin:0 14px}
+.night h2{color:#fff}
+.pv{list-style:none;padding:0;border-top:1px solid rgba(255,255,255,.25)}
+.pv li{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.pv h3{font-size:1.7rem}.pv p{color:#A8A6C2}
 /* cta */
-.cta{text-align:center;overflow:hidden}
-.cta h2{margin:0 auto 18px;max-width:12em}.cta .sub{margin:0 auto 32px}
-form{display:flex;gap:10px;max-width:480px;margin:0 auto;background:rgba(255,255,255,.08);padding:8px;border-radius:99px}
-input{flex:1;min-width:0;background:none;border:0;color:#fff;font:400 1rem 'DM Sans';padding:0 18px}
-input::placeholder{color:var(--mute)}input:focus{outline:none}
-form:focus-within{box-shadow:0 0 0 3px var(--mint)}
-#msg{margin-top:16px;min-height:1.6em;color:var(--mint);font-weight:500}
-footer{padding:36px 0;border-top:1px solid rgba(255,255,255,.1);color:var(--mute);font-size:.9rem}
-footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.rv{opacity:0;transform:translateY(30px);transition:1s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
-@media(max-width:860px){.hero .wrap,.cats{grid-template-columns:1fr}nav ul{display:none}.steps{grid-template-columns:1fr;gap:36px}.step:after{display:none}.badges{grid-template-columns:1fr 1fr}.hero{padding-top:100px}.tab[aria-selected=true]{transform:none}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}h1 span,.rv{opacity:1;transform:none}}
+.cta .w{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
+form{display:flex;gap:10px;border-bottom:1px solid var(--ink);padding-bottom:10px}
+input{flex:1;min-width:0;background:none;border:0;font:inherit;font-size:1.1rem;color:var(--ink);padding:8px 0}
+input:focus{outline:none}form:focus-within{border-color:var(--accent)}
+#msg{margin-top:14px;color:var(--accent);min-height:1.6em;font-size:.95rem}
+.cta p.sb{color:var(--mute);margin-top:20px;max-width:28em}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mute);font-size:.9rem}
+footer .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .9s,transform .9s}.js .rv.in{opacity:1;transform:none}
+@media(max-width:900px){.hero .w,.head,.cta .w,.pv li{grid-template-columns:1fr}.links,nav .btn{display:none}.steps{grid-template-columns:1fr}.badges{grid-template-columns:1fr 1fr}.bg:nth-child(2){border:0}.panel{height:540px}section{padding:84px 0}.hero{padding-top:110px}.acc .row{grid-template-columns:44px 1fr 24px}.acc .bd>div{padding-inline-start:44px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.js .rv{opacity:1;transform:none}}
+
+/* ---- v4: color, icons, illustration ---- */
+:root{--sun:#F2B33D;--mint:#BFE3D0;--sky:#C9DDF4;--peach:#F6C5B5}
+.ic{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ib{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;flex:none}
+.panel:before,.panel:after{display:none}
+.scene{position:absolute;inset:0;width:100%;height:100%}
+.tw{animation:tw 3.6s ease-in-out infinite}.tw:nth-child(3n){animation-delay:-1.2s}.tw:nth-child(5n){animation-delay:-2.4s}
+@keyframes tw{50%{opacity:.25}}
+.arc{fill:none;stroke:#fff;stroke-opacity:.7;stroke-width:1.6;stroke-dasharray:3 7;animation:dash 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-20}}
+.mq{background:var(--ink);color:var(--paper);overflow:hidden;padding:18px 0}
+.mq div{display:flex;width:max-content;animation:mq 60s linear infinite}
+.mq span{display:flex;align-items:center;white-space:nowrap;font:400 1.5rem var(--serif)}
+:lang(ar) .mq span{font-weight:500}
+.mq i{display:block;width:10px;height:10px;background:var(--sun);transform:rotate(45deg);margin:0 36px}
+@keyframes mq{to{transform:translateX(-50%)}}
+[dir=rtl] .mq div{animation-name:mqr}@keyframes mqr{to{transform:translateX(50%)}}
+.step{border-top:0;background:#fff;border-radius:28px;padding:28px}
+.step .top{display:flex;justify-content:space-between;align-items:center}
+.step .n{font-size:1.4rem;color:var(--mute)}
+.k1{background:var(--sun)}.k2{background:var(--mint)}.k3{background:var(--sky)}
+.step h3{margin-top:28px}
+.bento{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.bento+.sub+.bento,.sub{margin-top:20px}
+.sub{margin-top:44px;margin-bottom:6px}
+.card{border-radius:30px;padding:32px;display:flex;flex-direction:column;gap:14px;min-height:310px;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.card:hover{transform:translateY(-6px) rotate(-.5deg)}
+.card .ib{border-radius:18px;background:var(--ink);color:var(--paper)}
+.card h3{font-size:2.1rem;line-height:1.1}.card p{color:rgba(20,21,26,.72);max-width:26em}
+.bub{margin-top:auto;background:#fff;color:var(--ink);border-radius:20px 20px 20px 4px;padding:14px 18px;font-size:.95rem;line-height:1.45}
+[dir=rtl] .bub{border-radius:20px 20px 4px 20px}
+.c1{background:var(--sun)}.c2{background:var(--mint)}.c3{background:var(--sky)}.c4{background:var(--peach)}
+.c5,.c6{background:var(--accent);color:#fff;min-height:270px}.c5 p,.c6 p{color:rgba(255,255,255,.8)}.c5 .ib,.c6 .ib{background:#fff;color:var(--accent)}
+.badges{border:0;gap:20px}
+.bg{background:#fff;border:0!important;border-radius:26px;padding:28px;margin:0;transition:transform .3s}
+.bg:hover{transform:translateY(-6px)}.bg:hover .ib{transform:rotate(-8deg) scale(1.08)}.bg .ib{margin-bottom:26px;transition:transform .3s}
+.bc1{background:var(--peach)}.bc2{background:var(--sun)}.bc3{background:var(--sky)}.bc4{background:var(--mint)}
+.ph2{display:flex;align-items:center;gap:18px}
+.pv .ib{width:50px;height:50px;border:1px solid rgba(255,255,255,.3);color:var(--sun)}
+.cta .w{background:var(--sun);border-radius:36px;padding:72px 56px;position:relative;overflow:hidden;max-width:1104px}
+.cta .w>*{position:relative;z-index:1}
+.cta .w:after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:var(--accent);inset-inline-end:-110px;top:-130px}
+.cta .w:before{content:"";position:absolute;width:120px;height:120px;border-radius:50%;border:2px solid var(--ink);inset-inline-start:-40px;bottom:-50px}
+.cta p.sb{color:rgba(20,21,26,.75)}
+.cta form:focus-within{border-color:var(--accent)}
+@media(max-width:900px){.bento{grid-template-columns:1fr}.cta .w{padding:48px 28px}.card{min-height:0}}
+@media(prefers-reduced-motion:reduce){.tw,.arc,.mq div{animation:none!important}}
 </style>
 </head>
 <body>
-<nav><div class="wrap">
-<a class="brand" href="#top" aria-label="Unora home"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7A5CFF"/><stop offset="1" stop-color="#4326D9"/></linearGradient></defs><rect width="64" height="64" rx="18" fill="#0B0A26"/><path d="M17 14v18a15 15 0 0 0 30 0V14" fill="none" stroke="url(#lg)" stroke-width="9" stroke-linecap="round"/><circle cx="32" cy="25" r="6" fill="#7CF2C0"/></svg>unora</a>
-<ul><li><a href="#how">How it works</a></li><li><a href="#categories">Categories</a></li><li><a href="#badges">Badges</a></li></ul>
-<a class="btn" href="#notify">Get notified</a>
-</div></nav>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 4.24 4.24M14.83 9.17l4.24-4.24M14.83 14.83l4.24 4.24M9.17 14.83l-4.24 4.24"/></symbol>
+<symbol id="i-swap" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4M3 11v-1a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v1a4 4 0 0 1-4 4H3"/></symbol>
+<symbol id="i-mega" viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14zM11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/></symbol>
+<symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></symbol>
+<symbol id="i-house" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4"/></symbol>
+<symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36z"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
+</defs></svg>
+<nav id="nav"><div class="w">
+<a class="brand" href="#top" aria-label="Unora"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#14151A"/><path d="M18 14v18a14 14 0 0 0 28 0V14" fill="none" stroke="#F3F1EC" stroke-width="8" stroke-linecap="round"/><circle cx="32" cy="25" r="5.5" fill="#8C88FF"/></svg>unora</a>
+<ul class="links"><li><a href="#how" data-i="n1"></a></li><li><a href="#categories" data-i="n2"></a></li><li><a href="#privacy" data-i="n3"></a></li></ul>
+<div class="right">
+<div class="lang" role="group" aria-label="Language"><button data-l="en">EN</button><button data-l="fr">FR</button><button data-l="ar" lang="ar">العربية</button></div>
+<a class="btn" href="#notify" data-i="btn"></a>
+</div></div></nav>
 
-<header class="hero" id="top">
-<canvas id="net" aria-hidden="true"></canvas>
-<div class="wrap">
+<header class="hero" id="top"><div class="w">
 <div>
-<div class="pill"><i></i>Coming soon to Android &amp; iOS</div>
-<h1 id="h1">Meet the people next door.</h1>
-<p class="lead">Unora is a private space for your building, neighborhood or dorm. Ask for help, borrow a drill, share news and find the best local spots, all with people you trust.</p>
+<div class="status eyebrow"><i></i><span data-i="pill"></span></div>
+<h1 data-i="h1"></h1>
+<p class="lead" data-i="lead"></p>
 <div class="stores">
-<a class="store" aria-disabled="true"><svg viewBox="0 0 24 24" fill="#14123A"><path d="M3.6 2.3a1.5 1.5 0 0 0-.6 1.2v17a1.5 1.5 0 0 0 .6 1.2l9.7-9.7zM15 13.7l-1.7-1.7L4.6 21l11.5-6.5zM20 10.8l-3.3-1.9-2.2 2.1 2.2 2.1 3.3-1.9a1.3 1.3 0 0 0 0-.4zM4.6 3l8.7 9 1.7-1.7z"/></svg><div><small>Coming soon on</small><b>Google Play</b></div><em>Soon</em></a>
-<a class="store" aria-disabled="true"><svg viewBox="0 0 24 24" fill="#14123A"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.8-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.8 3-.8s1.8.8 3 .7c1.3 0 2.1-1.1 2.8-2.2.9-1.3 1.3-2.5 1.3-2.6-.1 0-2.5-1-2.5-3.8zM14.1 5.7c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg><div><small>Coming soon on</small><b>App Store</b></div><em>Soon</em></a>
+<div class="store" aria-disabled="true"><small data-i="soon"></small><b>Google Play</b></div>
+<div class="store" aria-disabled="true"><small data-i="soon"></small><b>App Store</b></div>
 </div>
 </div>
-<div class="phone" aria-label="Preview of the Unora app">
-<div class="screen">
-<h4>Maple Court <small>42 neighbors</small></h4>
-<div class="chips" id="chips"></div>
-<div id="feed"></div>
-</div>
-</div>
-</div>
-</header>
+<div class="panel" aria-hidden="true"><svg class="scene" viewBox="0 0 520 620" preserveAspectRatio="xMidYMax slice"><circle cx="420" cy="86" r="30" fill="#F2B33D"/><g id="bld"></g><path class="arc" d="M35 356Q70 230 197 276"/><path class="arc" d="M229 276Q330 30 437 306"/><g fill="#BFE3D0"><circle cx="35" cy="356" r="5"/><circle cx="197" cy="276" r="5"/><circle cx="229" cy="276" r="5"/><circle cx="437" cy="306" r="5"/></g></svg><div class="phone"><div class="screen">
+<header><b data-i="room"></b><span data-i="mem"></span></header>
+<div class="post" id="post"></div>
+<div class="post ghost"><span class="t" style="border-color:currentColor" data-i="c3t"></span><div data-i="p3"></div></div>
+</div></div></div>
+</div></header>
+<div class="mq" id="mq" aria-hidden="true"></div>
 
-<section class="light" id="how">
-<div class="wrap">
-<h2 class="rv">A trusted circle, in three moves.</h2>
-<p class="sub rv">Every room is invite-only and approved by its creator, so you only talk to people who really live nearby.</p>
+<section class="rule" id="how"><div class="w">
+<div class="head rv"><h2 data-i="hh"></h2><p data-i="hs"></p></div>
 <div class="steps">
-<div class="step rv"><h3>Create or join a room</h3><p>Start a room for your street, residential complex or dormitory. Join one with a link or a room ID.</p></div>
-<div class="step rv"><h3>Get approved</h3><p>The room creator confirms every join request, which keeps the community safe and familiar.</p></div>
-<div class="step rv"><h3>Start posting</h3><p>Share in the category that fits, from a quick favor to a restaurant tip.</p></div>
-</div>
-</div>
-</section>
+<div class="step rv"><div class="top"><span class="ib k1"><svg class="ic"><use href="#i-house"/></svg></span><span class="n">01</span></div><h3 data-i="s1t"></h3><p data-i="s1d"></p></div>
+<div class="step rv"><div class="top"><span class="ib k2"><svg class="ic"><use href="#i-user"/></svg></span><span class="n">02</span></div><h3 data-i="s2t"></h3><p data-i="s2d"></p></div>
+<div class="step rv"><div class="top"><span class="ib k3"><svg class="ic"><use href="#i-chat"/></svg></span><span class="n">03</span></div><h3 data-i="s3t"></h3><p data-i="s3d"></p></div>
+</div></div></section>
 
-<section id="categories">
-<div class="wrap">
-<h2 class="rv">One feed, every kind of neighborly thing.</h2>
-<p class="sub rv">Pick a category and see what it looks like. Turn on dorm mode to see the two extra categories for student housing.</p>
-<div class="cats rv" id="cats">
-<div>
-<div class="tabs" role="tablist" aria-label="Post categories" id="tabs"></div>
-<button class="switch" id="dormSwitch" aria-pressed="false"><i></i>Dormitory room</button>
-</div>
-<div class="detail" id="detail" aria-live="polite"></div>
-</div>
-</div>
-</section>
+<section class="rule" id="categories"><div class="w">
+<div class="head rv"><h2 data-i="ch"></h2><p data-i="cs"></p></div>
+<div class="bento rv" id="acc1"></div>
+<div class="eyebrow sub" data-i="dl"></div>
+<div class="bento rv" id="acc2"></div>
+</div></section>
 
-<section class="light" id="badges">
-<div class="wrap">
-<h2 class="rv">Kindness that gets noticed.</h2>
-<p class="sub rv">Your profile shows your activity and the badges you earn by helping, sharing and showing up for your community.</p>
+<section class="rule" id="badges"><div class="w">
+<div class="head rv"><h2 data-i="bh"></h2><p data-i="bs"></p></div>
 <div class="badges">
-<div class="badge rv" style="--c:var(--mint)"><div class="hex">🤝</div><b>Good Neighbor</b><span>Helped your first neighbor</span></div>
-<div class="badge rv" style="--c:var(--sun)"><div class="hex">🔧</div><b>Lender</b><span>Lent items to others</span></div>
-<div class="badge rv" style="--c:var(--sky)"><div class="hex">📣</div><b>Town Crier</b><span>Shared useful local news</span></div>
-<div class="badge rv" style="--c:var(--rose)"><div class="hex">⭐</div><b>Local Guide</b><span>Recommended great places</span></div>
-</div>
-</div>
-</section>
+<div class="bg rv"><span class="ib bc1"><svg class="ic"><use href="#i-heart"/></svg></span><h3 data-i="b1t"></h3><p data-i="b1d"></p></div>
+<div class="bg rv"><span class="ib bc2"><svg class="ic"><use href="#i-box"/></svg></span><h3 data-i="b2t"></h3><p data-i="b2d"></p></div>
+<div class="bg rv"><span class="ib bc3"><svg class="ic"><use href="#i-mega"/></svg></span><h3 data-i="b3t"></h3><p data-i="b3d"></p></div>
+<div class="bg rv"><span class="ib bc4"><svg class="ic"><use href="#i-compass"/></svg></span><h3 data-i="b4t"></h3><p data-i="b4d"></p></div>
+</div></div></section>
 
-<section class="cta" id="notify">
-<div class="wrap">
-<h2 class="rv">Be the first on your block.</h2>
-<p class="sub rv">Leave your email and we will tell you the day Unora launches on Android and iOS.</p>
-<form id="form"><label for="email" hidden>Email address</label><input id="email" type="email" placeholder="you@email.com" required autocomplete="email"><button class="btn" type="submit">Notify me</button></form>
-<p id="msg" role="status"></p>
-</div>
-</section>
+<section class="night" id="privacy"><div class="w">
+<div class="head rv"><h2 data-i="ph"></h2><span></span></div>
+<ul class="pv rv">
+<li><div class="ph2"><span class="ib"><svg class="ic"><use href="#i-shield"/></svg></span><h3 data-i="v1t"></h3></div><p data-i="v1d"></p></li>
+<li><div class="ph2"><span class="ib"><svg class="ic"><use href="#i-pin"/></svg></span><h3 data-i="v2t"></h3></div><p data-i="v2d"></p></li>
+<li><div class="ph2"><span class="ib"><svg class="ic"><use href="#i-sliders"/></svg></span><h3 data-i="v3t"></h3></div><p data-i="v3d"></p></li>
+</ul></div></section>
 
-<footer><div class="wrap"><span>© <span id="yr"></span> Unora. Neighbors, together.</span><span>Coming soon for Android &amp; iOS</span></div></footer>
+<section class="cta" id="notify"><div class="w">
+<div class="rv"><h2 data-i="th"></h2><p class="sb" data-i="ts"></p></div>
+<div class="rv"><form id="form"><label for="email" hidden data-i="em"></label><input id="email" type="email" required autocomplete="email" data-ph="em"><button class="btn" type="submit" data-i="btn"></button></form><p id="msg" role="status"></p></div>
+</div></section>
+
+<footer><div class="w"><span><span id="yr"></span> Unora</span><span data-i="ft"></span></div></footer>
 
 <script>
-/* ---- CONFIG: set your contact email, or a form endpoint (e.g. Formspree) ---- */
-const CONTACT_EMAIL='laribiissam8@gmail.com';
-const FORM_ENDPOINT='';
-
-document.getElementById('yr').textContent=new Date().getFullYear();
-// headline letters
-const h1=document.getElementById('h1');
-h1.innerHTML=h1.textContent.split(' ').map((w,i)=>`<span style="animation-delay:${.15+i*.12}s">${w}</span>`).join(' ');
-
-// scroll reveal
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4)*80+'ms';io.observe(el)});
-
-// neighbor network canvas: dots drift, connect, and gravitate to the cursor
-const cv=document.getElementById('net'),cx=cv.getContext('2d');
-let W,H,pts=[],mouse={x:-999,y:-999};
-const cols=['#7CF2C0','#FFC857','#FF8FA3','#7CC8FF','#8F78FF'];
-function size(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;pts=Array.from({length:Math.round(W*H/16000)},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,c:cols[Math.random()*5|0],r:2+Math.random()*3}))}
-addEventListener('resize',size);size();
-cv.parentElement.addEventListener('pointermove',e=>{const b=cv.getBoundingClientRect();mouse={x:e.clientX-b.left,y:e.clientY-b.top}});
-const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
-function draw(){
- cx.clearRect(0,0,W,H);
- for(const p of pts){
-  const dx=mouse.x-p.x,dy=mouse.y-p.y,d=Math.hypot(dx,dy);
-  if(d<200&&d>1){p.x+=dx/d*.6;p.y+=dy/d*.6}
-  if(!still){p.x+=p.vx;p.y+=p.vy}
-  if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
- }
- for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-  const a=pts[i],b=pts[j],d=Math.hypot(a.x-b.x,a.y-b.y);
-  if(d<130){cx.strokeStyle=`rgba(143,120,255,${(1-d/130)*.45})`;cx.lineWidth=1;cx.beginPath();cx.moveTo(a.x,a.y);cx.lineTo(b.x,b.y);cx.stroke()}
- }
- for(const p of pts){cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()}
- if(!still)requestAnimationFrame(draw)
+const CONTACT_EMAIL='laribiissam8@gmail.com'; 
+const FORM_ENDPOINT='';              
+const T={
+en:{ttl:'Unora – Know the people next door',n1:'How it works',n2:'Categories',n3:'Privacy',btn:'Notify me',pill:'Coming soon for Android and iOS',h1:'Know the people next door.',lead:'Unora is a private space for your building, neighborhood or dormitory. Ask for help, lend and borrow, share news and recommend places, with people who actually live nearby.',soon:'Coming soon on',room:'Maple Court',mem:'42 members',reply:'2 replies',
+p1:'Could someone help me carry a washing machine to the third floor?',p2:'Does anyone have a drill I can borrow until Sunday?',p3:'Water will be off tomorrow from 9 am to 1 pm.',p4:'Karim fixed my plumbing in an hour. Recommended.',
+hh:'Three steps to a trusted room.',hs:'Every room is private, and every member is approved by the person who created it.',
+s1t:'Create or join',s1d:'Start a room for your street, building or dormitory, or join one with a link or a room ID.',s2t:'Get approved',s2d:'The creator reviews each request, so the room only includes people who live there.',s3t:'Start posting',s3d:'Share in the category that fits, from a small favor to a recommendation.',
+ch:'One room, four kinds of posts.',cs:'Each category keeps the feed easy to read. Dormitory rooms add two more.',
+c1t:'Help requests',c1d:'Ask neighbors for a hand with everyday tasks or problems.',c1e:'Could someone help me carry a washing machine upstairs?',
+c2t:'Borrow & Lend',c2d:'Offer items to borrow, or ask for something you only need once.',c2e:'Does anyone have a ladder I can borrow this weekend?',
+c3t:'Local information',c3d:'Announcements, useful information and updates for the community.',c3e:'The building meeting is on Friday at 7 pm.',
+c4t:'Recommendations',c4d:'Shops, services, restaurants and repair professionals worth knowing.',c4e:'Best place nearby to get a phone screen repaired.',
+dl:'Dormitory rooms also include',
+c5t:'Room exchange',c5d:'Offer your room for exchange with another student.',c5e:'Single room in block B, looking for block A.',
+c6t:'Student marketplace',c6d:'Buy and sell items within your dormitory.',c6e:'Mini fridge for sale, pickup in block C.',
+bh:'Recognition for being a good neighbor.',bs:'Your profile shows your activity and the badges you have earned by helping and taking part.',
+b1t:'Good Neighbor',b1d:'Helped a neighbor for the first time.',b2t:'Lender',b2d:'Lent items to other members.',b3t:'Informer',b3d:'Shared useful information with the room.',b4t:'Local Guide',b4d:'Recommended places others found useful.',
+ph:'Private by design.',v1t:'Approved members only',v1d:'The creator reviews every request to join before anyone sees a post.',v2t:'No exact addresses',v2d:'Members share what they choose. A room is built around a community, not around a precise address.',v3t:'You set the tone',v3d:'The creator manages members and can remove posts that do not belong.',
+th:'Be among the first to join.',ts:'Leave your email and we will let you know when Unora is available on Android and iOS.',em:'Email address',ok:'Thank you. We will be in touch at launch.',mail:'Your email app should open. Send the message to join the list.',ft:'Coming soon for Android and iOS'},
+fr:{ttl:'Unora – Connaissez vos voisins',n1:'Fonctionnement',n2:'Catégories',n3:'Confidentialité',btn:'Me prévenir',pill:'Bientôt sur Android et iOS',h1:'Connaissez vos voisins.',lead:'Unora est un espace privé pour votre immeuble, votre quartier ou votre résidence universitaire. Demandez de l’aide, prêtez et empruntez, partagez des nouvelles et recommandez des adresses, avec des personnes qui habitent vraiment près de vous.',soon:'Bientôt sur',room:'Résidence Les Pins',mem:'42 membres',reply:'2 réponses',
+p1:'Quelqu’un peut-il m’aider à monter une machine à laver au troisième étage ?',p2:'Quelqu’un aurait-il une perceuse à me prêter jusqu’à dimanche ?',p3:'L’eau sera coupée demain de 9 h à 13 h.',p4:'Karim a réparé ma plomberie en une heure. Je le recommande.',
+hh:'Trois étapes vers un espace de confiance.',hs:'Chaque espace est privé, et chaque membre est approuvé par la personne qui l’a créé.',
+s1t:'Créer ou rejoindre',s1d:'Créez un espace pour votre rue, votre immeuble ou votre résidence, ou rejoignez-en un avec un lien ou un identifiant.',s2t:'Être approuvé',s2d:'Le créateur examine chaque demande, de sorte que seuls les habitants du lieu en font partie.',s3t:'Publier',s3d:'Partagez dans la catégorie adaptée, d’un petit service à une recommandation.',
+ch:'Un espace, quatre types de publications.',cs:'Chaque catégorie garde le fil lisible. Les résidences universitaires en ajoutent deux.',
+c1t:'Demandes d’aide',c1d:'Demandez un coup de main à vos voisins pour les tâches ou problèmes du quotidien.',c1e:'Quelqu’un peut-il m’aider à monter une machine à laver ?',
+c2t:'Prêt et emprunt',c2d:'Proposez des objets à prêter, ou demandez ce dont vous n’avez besoin qu’une fois.',c2e:'Quelqu’un a-t-il une échelle à me prêter ce week-end ?',
+c3t:'Informations locales',c3d:'Annonces, informations utiles et nouvelles pour la communauté.',c3e:'La réunion de l’immeuble a lieu vendredi à 19 h.',
+c4t:'Recommandations',c4d:'Commerces, services, restaurants et artisans qui valent la peine d’être connus.',c4e:'La meilleure adresse du quartier pour réparer un écran de téléphone.',
+dl:'Les résidences universitaires ajoutent',
+c5t:'Échange de chambre',c5d:'Proposez votre chambre en échange à un autre étudiant.',c5e:'Chambre individuelle au bloc B, recherche bloc A.',
+c6t:'Marché étudiant',c6d:'Achetez et vendez des objets au sein de votre résidence.',c6e:'Mini-frigo à vendre, à récupérer au bloc C.',
+bh:'La reconnaissance d’un bon voisin.',bs:'Votre profil affiche votre activité et les badges gagnés en aidant et en participant.',
+b1t:'Bon voisin',b1d:'A aidé un voisin pour la première fois.',b2t:'Prêteur',b2d:'A prêté des objets à d’autres membres.',b3t:'Informateur',b3d:'A partagé des informations utiles avec l’espace.',b4t:'Guide local',b4d:'A recommandé des adresses utiles aux autres.',
+ph:'Privé par conception.',v1t:'Membres approuvés uniquement',v1d:'Le créateur examine chaque demande d’adhésion avant que quiconque voie une publication.',v2t:'Pas d’adresse exacte',v2d:'Les membres partagent ce qu’ils choisissent. Un espace s’organise autour d’une communauté, pas d’une adresse précise.',v3t:'Vous donnez le ton',v3d:'Le créateur gère les membres et peut retirer les publications qui n’ont pas leur place.',
+th:'Soyez parmi les premiers.',ts:'Laissez votre e-mail et nous vous préviendrons dès que Unora sera disponible sur Android et iOS.',em:'Adresse e-mail',ok:'Merci. Nous vous écrirons au lancement.',mail:'Votre application de messagerie devrait s’ouvrir. Envoyez le message pour rejoindre la liste.',ft:'Bientôt sur Android et iOS'},
+ar:{ttl:'أونورا – تعرّف على جيرانك',n1:'كيف تعمل',n2:'الفئات',n3:'الخصوصية',btn:'أخبرني',pill:'قريبًا على أندرويد وiOS',h1:'تعرّف على جيرانك.',lead:'أونورا مساحة خاصة لعمارتك أو حيّك أو إقامتك الجامعية. اطلب المساعدة، أعِر واستعِر، شارك الأخبار وأوصِ بالأماكن، مع أشخاص يسكنون فعلًا بالقرب منك.',soon:'قريبًا على',room:'إقامة الصنوبر',mem:'42 عضوًا',reply:'2 ردود',
+p1:'هل يستطيع أحد مساعدتي في حمل غسالة إلى الطابق الثالث؟',p2:'هل لدى أحدكم مثقاب يمكنني استعارته حتى الأحد؟',p3:'سيتم قطع المياه غدًا من التاسعة صباحًا إلى الواحدة ظهرًا.',p4:'أصلح كريم أنابيب منزلي في ساعة واحدة. أنصح به.',
+hh:'ثلاث خطوات نحو مساحة موثوقة.',hs:'كل مساحة خاصة، وكل عضو يوافق عليه منشئ المساحة.',
+s1t:'أنشئ أو انضم',s1d:'أنشئ مساحة لشارعك أو عمارتك أو إقامتك الجامعية، أو انضم إلى مساحة بواسطة رابط أو معرّف.',s2t:'احصل على الموافقة',s2d:'يراجع المنشئ كل طلب، فلا يضم المجتمع إلا من يسكن فيه فعلًا.',s3t:'ابدأ بالنشر',s3d:'شارك في الفئة المناسبة، من خدمة بسيطة إلى توصية.',
+ch:'مساحة واحدة، أربعة أنواع من المنشورات.',cs:'كل فئة تُبقي المحتوى منظمًا وسهل القراءة. وتضيف الإقامات الجامعية فئتين.',
+c1t:'طلبات المساعدة',c1d:'اطلب من جيرانك يد العون في المهام أو المشكلات اليومية.',c1e:'هل يستطيع أحد مساعدتي في حمل غسالة إلى الأعلى؟',
+c2t:'الإعارة والاستعارة',c2d:'اعرض أغراضًا للإعارة، أو اطلب ما تحتاجه لمرة واحدة.',c2e:'هل لدى أحدكم سلّمًا أستعيره نهاية الأسبوع؟',
+c3t:'معلومات محلية',c3d:'إعلانات ومعلومات مفيدة وأخبار للمجتمع.',c3e:'اجتماع العمارة يوم الجمعة في السابعة مساءً.',
+c4t:'توصيات',c4d:'محلات وخدمات ومطاعم وحرفيون يستحقون المعرفة.',c4e:'أفضل مكان قريب لإصلاح شاشة الهاتف.',
+dl:'تضيف الإقامات الجامعية أيضًا',
+c5t:'تبادل الغرف',c5d:'اعرض غرفتك للتبادل مع طالب آخر.',c5e:'غرفة فردية في الجناح ب، أبحث عن الجناح أ.',
+c6t:'سوق الطلبة',c6d:'اشترِ وبِع الأغراض داخل إقامتك.',c6e:'ثلاجة صغيرة للبيع، الاستلام من الجناح ج.',
+bh:'تقدير لحسن الجوار.',bs:'يعرض ملفك الشخصي نشاطك والأوسمة التي نلتها بالمساعدة والمشاركة.',
+b1t:'الجار الطيب',b1d:'ساعد جارًا لأول مرة.',b2t:'المُعير',b2d:'أعار أغراضًا لأعضاء آخرين.',b3t:'صاحب الخبر',b3d:'شارك معلومات مفيدة مع المجتمع.',b4t:'الدليل المحلي',b4d:'أوصى بأماكن أفادت الآخرين.',
+ph:'خصوصية من الأساس.',v1t:'أعضاء موافَق عليهم فقط',v1d:'يراجع المنشئ كل طلب انضمام قبل أن يرى أي شخص المنشورات.',v2t:'بلا عناوين دقيقة',v2d:'يشارك الأعضاء ما يختارون. تُبنى المساحة حول مجتمع، لا حول عنوان دقيق.',v3t:'أنت من يضع القواعد',v3d:'يدير المنشئ الأعضاء ويمكنه حذف المنشورات غير المناسبة.',
+th:'كن من أوائل المنضمين.',ts:'اترك بريدك الإلكتروني وسنخبرك عند توفر أونورا على أندرويد وiOS.',em:'البريد الإلكتروني',ok:'شكرًا. سنراسلك عند الإطلاق.',mail:'يفترض أن يفتح تطبيق البريد. أرسل الرسالة للانضمام إلى القائمة.',ft:'قريبًا على أندرويد وiOS'}
+};
+let L='en',pi=0;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function feed(fade){
+ const el=$('#post'),n=pi%4+1,t=T[L];
+ const put=()=>{el.innerHTML=`<span class="t">${t['c'+n+'t']}</span><div>${t['p'+n]}</div><div class="m">${t.reply}</div>`;el.classList.remove('f')};
+ if(fade){el.classList.add('f');setTimeout(put,450)}else put();
 }
-draw();
-
-// categories data
-const CATS=[
- {k:'help',n:'Help Requests',i:'🙋',c:'#7CF2C0',t:'Ask for a hand',d:'Stuck with a heavy sofa, a leaking tap or a form you do not understand? Ask the neighbors who live closest.',e:'“Can someone help me carry a washing machine to the 3rd floor?”',who:'Lina',av:'#7CF2C0'},
- {k:'borrow',n:'Borrow & Lend',i:'🔧',c:'#FFC857',t:'Share what sits idle',d:'Borrow a ladder instead of buying one. Lend your drill and earn some goodwill.',e:'“Does anyone have a drill I can borrow until Sunday?”',who:'Omar',av:'#FFC857'},
- {k:'info',n:'Local Information',i:'📣',c:'#7CC8FF',t:'Stay in the loop',d:'Water cuts, building meetings, lost keys and local updates, all in one reliable place.',e:'“Water will be off tomorrow from 9am to 1pm.”',who:'Building admin',av:'#7CC8FF'},
- {k:'rec',n:'Recommendations',i:'⭐',c:'#FF8FA3',t:'Find the good stuff nearby',d:'Shops, restaurants, repair pros and hidden gems, recommended by people who actually live there.',e:'“Best plumber in the area? Karim fixed mine in an hour.”',who:'Sara',av:'#FF8FA3'},
- {k:'room',n:'Room Exchange',i:'🛏️',c:'#B9A8FF',t:'Swap rooms with another student',d:'Want a quieter floor or to live closer to a friend? Offer your room for exchange with another student.',e:'“Offering a single room, block B. Looking for block A.”',who:'Yacine',av:'#B9A8FF',dorm:1},
- {k:'market',n:'Student Marketplace',i:'🛒',c:'#9BF08B',t:'Buy and sell on campus',d:'Textbooks, mini fridges, desk lamps. Trade with students in your own dorm.',e:'“Selling a mini fridge, 6,000 DA. Pickup in block C.”',who:'Nour',av:'#9BF08B',dorm:1}
-];
-const tabs=document.getElementById('tabs'),detail=document.getElementById('detail'),cats=document.getElementById('cats');
-function show(k){
- const c=CATS.find(x=>x.k===k);
- tabs.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k));
- detail.style.setProperty('--c',c.c);cats.style.setProperty('--c',c.c);
- detail.innerHTML=`<div><div class="big">${c.i}</div><h3>${c.t}</h3><p>${c.d}</p></div><div class="ex">${c.e}</div>`;
+const IC={1:'help',2:'swap',3:'mega',4:'star',5:'key',6:'bag'};
+function build(){
+ const t=T[L],mk=(ids,box)=>{$(box).innerHTML=ids.map(k=>`<article class="card c${k}"><span class="ib"><svg class="ic"><use href="#i-${IC[k]}"/></svg></span><h3>${t['c'+k+'t']}</h3><p>${t['c'+k+'d']}</p><div class="bub">${t['c'+k+'e']}</div></article>`).join('')};
+ mk([1,2,3,4],'#acc1');mk([5,6],'#acc2');
+ const it=[1,2,3,4,5,6].map(k=>`<span>${t['c'+k+'e']}<i></i></span>`).join('');$('#mq').innerHTML=`<div>${it+it}</div>`;
 }
-CATS.forEach(c=>{const b=document.createElement('button');b.className='tab'+(c.dorm?' dorm':'');b.role='tab';b.dataset.k=c.k;b.style.setProperty('--c',c.c);b.innerHTML=`<span class="ic">${c.i}</span>${c.n}`;b.onclick=()=>show(c.k);tabs.appendChild(b)});
-const sw=document.getElementById('dormSwitch');
-sw.onclick=()=>{const on=sw.getAttribute('aria-pressed')!=='true';sw.setAttribute('aria-pressed',on);tabs.classList.toggle('dorms',on);if(on)show('room');else if(CATS.find(c=>c.k===tabs.querySelector('[aria-selected=true]').dataset.k).dorm)show('help')};
-show('help');
-
-// phone feed auto-cycles through the categories
-const chips=document.getElementById('chips'),feed=document.getElementById('feed');
-const feedCats=CATS.slice(0,4);
-chips.innerHTML=feedCats.map(c=>`<span class="chip">${c.n.split(' ')[0]}</span>`).join('');
-let idx=0;
-function cycle(){
- const c=feedCats[idx%4];
- [...chips.children].forEach((el,i)=>el.classList.toggle('on',i===idx%4));
- feed.innerHTML=`<div class="post"><div class="who"><span class="av" style="background:${c.av}">${c.who[0]}</span>${c.who}</div>${c.e.replace(/[“”]/g,'')}<br><span class="tag" style="background:${c.c}">${c.n}</span></div>
- <div class="post" style="animation-delay:.15s"><div class="who"><span class="av" style="background:#ddd">+</span>2 neighbors replied</div><span style="color:#57527f">Tap to join the conversation</span></div>`;
- idx++;
+(function(){const B=[[10,150,300,'#2E27B8'],[140,130,380,'#241F94'],[262,126,290,'#2E27B8'],[380,140,350,'#241F94']];let s=7;const r=()=>(s=s*16807%2147483647)/2147483647;let h='';
+B.forEach(([x,w,ht,c])=>{const y=620-ht;h+=`<rect x="${x}" y="${y}" width="${w}" height="${ht}" fill="${c}"/>`;for(let cy=y+24;cy<600;cy+=40)for(let cx=x+16;cx<x+w-20;cx+=32){const lit=r()>.62;h+=`<rect x="${cx}" y="${cy}" width="18" height="24" rx="3" fill="${lit?'#F2B33D':'#fff'}" opacity="${lit?1:.1}"${lit&&r()>.7?' class="tw"':''}/>`}});
+document.getElementById('bld').innerHTML=h})();
+function setLang(l){
+ L=l;const t=T[l];
+ document.documentElement.lang=l;document.documentElement.dir=l=='ar'?'rtl':'ltr';
+ document.title=t.ttl;
+ $$('[data-i]').forEach(e=>e.textContent=t[e.dataset.i]);
+ $$('[data-ph]').forEach(e=>e.placeholder=t[e.dataset.ph]);
+ $$('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l==l));
+ build();feed(false);
+ try{localStorage.setItem('unora-lang',l)}catch(e){}
 }
-cycle();if(!still)setInterval(cycle,3200);
-
-// notify form
-const form=document.getElementById('form'),msg=document.getElementById('msg');
-form.onsubmit=async e=>{
- e.preventDefault();const email=document.getElementById('email').value.trim();
+$$('.lang button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+let init='en';try{init=localStorage.getItem('unora-lang')||''}catch(e){}
+if(!T[init]){const n=(navigator.language||'en').slice(0,2);init=T[n]?n:'en'}
+setLang(init);
+$('#yr').textContent='© '+new Date().getFullYear();
+setInterval(()=>{pi++;feed(true)},4200);
+const nav=$('#nav');addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>10),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+$$('.rv').forEach(e=>io.observe(e));
+$('#form').onsubmit=async e=>{
+ e.preventDefault();const email=$('#email').value.trim(),m=$('#msg'),t=T[L];
  if(FORM_ENDPOINT){
-  try{const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({email})});
-   if(!r.ok)throw 0;msg.textContent='You are on the list. See you soon, neighbor!';form.reset();
-  }catch{msg.textContent='Something went wrong. Please try again in a moment.'}
+  try{const r=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({email})});if(!r.ok)throw 0;m.textContent=t.ok;e.target.reset()}catch{m.textContent='Error'}
  }else{
-  location.href=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Notify me when Unora launches')}&body=${encodeURIComponent('Please notify me at '+email)}`;
-  msg.textContent='Your email app should open. Send the message to join the list.';
+  location.href=`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Unora')}&body=${encodeURIComponent(email)}`;m.textContent=t.mail;
  }
 };
 </script>
